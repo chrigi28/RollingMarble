@@ -49,7 +49,12 @@ public class DefaultPlayerController : BaseScript
         
         if (this.gameManager.IsRunning())
         {
-            var input = Input.acceleration * this.moveMultiplier * Time.deltaTime;
+
+            if (SystemInfo.supportsAccelerometer)
+            {
+                var input = Input.acceleration * this.moveMultiplier * Time.deltaTime;
+            }
+            
             var horizontalInput = input.x;
             var verticalInput = input.y;
             Debug.Log(input);
