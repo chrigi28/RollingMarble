@@ -5,5 +5,5 @@ public enum EGameState
 {
     Paused,
     Countdown,
-    Running,
+    Running
 }
