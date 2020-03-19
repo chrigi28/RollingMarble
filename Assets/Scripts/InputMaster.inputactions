@@ -147,7 +147,7 @@
                 {
                     "name": "up",
                     "id": "9973847d-85f8-4468-be9b-dcd1919c7c58",
-                    "path": "<Gyroscope>/angularVelocity/y",
+                    "path": "<Gyroscope>/angularVelocity/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
@@ -158,7 +158,7 @@
                 {
                     "name": "down",
                     "id": "789248ed-9bf7-4aba-9249-3974b10d7ba5",
-                    "path": "<Gyroscope>/angularVelocity/y",
+                    "path": "<Gyroscope>/angularVelocity/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
@@ -200,9 +200,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "down",
                     "id": "6c94e45f-12e8-4b0d-a851-2a4709fdabf8",
-                    "path": "<Accelerometer>/acceleration/y",
+                    "path": "<Accelerometer>/acceleration/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",
@@ -211,9 +211,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "up",
                     "id": "8f302fbb-29c5-4acc-bbad-aaaf5f785275",
-                    "path": "<Accelerometer>/acceleration/y",
+                    "path": "<Accelerometer>/acceleration/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mobile",

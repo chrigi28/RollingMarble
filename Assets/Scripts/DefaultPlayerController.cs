@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class DefaultPlayerController : BaseScript
 {
@@ -16,7 +15,6 @@ public class DefaultPlayerController : BaseScript
 
     private Rigidbody rigidbody;
 
-    private InputMaster input;
     private EGameState previousState;
     private Vector2 movement;
     private const string horizontal = "Horizontal";
@@ -26,11 +24,14 @@ public class DefaultPlayerController : BaseScript
     // Start is called before the first frame update
     void Awake()
     {
-        this.input = new InputMaster();
-        input.Player.Jump.performed += this.Jump;
         //input.Player.Movement.performed += ctx => this.Move(ctx.ReadValue<Vector2>());
         rigidbody = this.Player.GetComponent<Rigidbody>();
         this.gameManager.ContinueGame();
+
+        if (SystemInfo.supportsGyroscope)
+        {
+            Input.gyro.enabled = true;
+        }
     }
 
     void Update()
@@ -45,35 +46,48 @@ public class DefaultPlayerController : BaseScript
     // Update is called once per frame
     void FixedUpdate()
     {
-        var forceToAdd = new Vector3();
-        
+        var forceToAdd = Vector3.zero;
+
         if (this.gameManager.IsRunning())
         {
 
             if (SystemInfo.supportsAccelerometer)
             {
-                var input = Input.acceleration * this.moveMultiplier * Time.deltaTime;
+                forceToAdd.x = Input.acceleration.x;
+                forceToAdd.y = 0;
+                forceToAdd.z = Input.acceleration.y;
             }
-            
-            var horizontalInput = input.x;
-            var verticalInput = input.y;
-            Debug.Log(input);
-
-            forceToAdd += new Vector3(horizontalInput, 0f, verticalInput);
-
+            else
+            {
+                forceToAdd.x = Input.GetAxis(horizontal);
+                forceToAdd.z = Input.GetAxis(vertical);
+            }
 
             if (this.rigidbody.transform.position.y > 3)
             {
                 // increased gravity
-                this.rigidbody.AddForce(0, -JumpMultiplier, 0, ForceMode.Impulse);
+                this.rigidbody.AddForce(0, -JumpMultiplier / 4, 0, ForceMode.Impulse);
             }
+
+            if (Input.touchSupported)
+            {
+                
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    this.Jump();
+                }
+            }
+
         }
         else
         {
             this.rigidbody.velocity = new Vector3(0, 0, 0);
         }
 
-        this.rigidbody.AddForce(forceToAdd);
+        this.rigidbody.AddForce(forceToAdd * this.moveMultiplier * Time.deltaTime);
 
 
         if (this.rigidbody.velocity.z > this.MaxSpeed)
@@ -82,7 +96,7 @@ public class DefaultPlayerController : BaseScript
         }
     }
 
-    private void Jump(InputAction.CallbackContext obj)
+    private void Jump()
     {
 
         if (this.rigidbody.transform.position.y < 1.02)
@@ -96,16 +110,5 @@ public class DefaultPlayerController : BaseScript
     {
         Debug.Log("Move" + direction);
         this.movement = direction * this.moveMultiplier * Time.deltaTime;
-    }
-
-    private void OnEnable()
-    {
-        this.input.Enable();
-        
-    }
-
-    private void OnDisable()
-    {
-        this.input.Disable();
     }
 }

@@ -1348,7 +1348,7 @@ MonoBehaviour:
   Block2x5y: {fileID: 1676767084}
   Ground: {fileID: 535129270}
   RandomSeed: 282828
-  firstObstecleDistance: 15
+  firstObstecleDistance: 12.5
 --- !u!1 &557226357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,9 +1838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 423237936}
   MinSpeed: {x: 0, y: 0, z: 2}
-  MaxSpeed: 20
+  MaxSpeed: 15
   moveMultiplier: 1500
-  JumpMultiplier: 7
+  JumpMultiplier: 50
   Player: {fileID: 732683629}
 --- !u!1 &807313562
 GameObject:
