@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance; 
     public static EGameState GameState = EGameState.Paused;
 
     public GameObject GameOverPanel;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
         this.DisableMenus();
     }
 
@@ -79,5 +81,16 @@ public class GameManager : MonoBehaviour
     public void ShowHome()
     {
         Debug.Log("Settings Requested");
+    }
+
+    public void FinishLevel()
+    {
+        Debug.Log("GameFinished");
+        this.PauseGame();
+        // show time
+        // show Score (nr * )
+        // show next start level
+        // show level select 
+        // show go home
     }
 }

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BallMat
+  m_Name: BallMat2
   m_Shader: {fileID: -6465566751694194690, guid: b6468493879102440b64869ce20dd0a1,
     type: 3}
   m_ShaderKeywords: _EMISSION _NORMALMAP _SPECGLOSSMAP

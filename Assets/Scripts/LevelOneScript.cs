@@ -7,6 +7,7 @@ public class LevelOneScript : BaseScript
     public GameObject Block1x5y;
     public GameObject Block2x5y;
     public GameObject Ground;
+    public GameObject Finish;
     public int RandomSeed = 282828;
     public float firstObstecleDistance = 12.5f;
 
@@ -35,7 +36,11 @@ public class LevelOneScript : BaseScript
 
             this.Obstacls.Add(ob);
         }
-        
+
+        var finischpos = new Vector3(0, this.Ground.transform.localScale.y / 2 + Finish.transform.localScale.y / 2,
+            this.Ground.transform.localScale.z - 5);
+        Instantiate(Finish, finischpos
+            , Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -50,7 +55,7 @@ public class LevelOneScript : BaseScript
         var minXpos= ob.transform.localScale.x /2;
         var groundStart = groundScale.x / 2;
         var xPos = Random.Range(-groundStart + minXpos, groundStart - minXpos);
-        var zPos = Random.Range(this.firstObstecleDistance, groundScale.z - Ground.transform.position.z);
+        var zPos = Random.Range(this.firstObstecleDistance, groundScale.z - firstObstecleDistance);
 
         //todo check if no intersection apply rules
         return new Vector3(xPos,groundScale.y / 2 + ob.transform.localScale.y/2, zPos);
