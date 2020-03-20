@@ -18,12 +18,21 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         this.DisableMenus();
     }
 
     void Start()
     {
+        this.DisableMenus();
     }
 
     void OnEnable()

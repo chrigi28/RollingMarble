@@ -1415,6 +1415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423237937}
   - component: {fileID: 423237936}
+  - component: {fileID: 423237938}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -1450,6 +1451,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &423237938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423237935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ec3f5c610d230428b56b4027b1b971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Background01
+    clip: {fileID: 8300000, guid: db16f2c3c0935b641914770d3d51915a, type: 3}
+    volume: 0.02
+    volumeVariance: 1
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Bounce01
+    clip: {fileID: 8300000, guid: a720ca0c73e37a9418a10ff3dfe4b039, type: 3}
+    volume: 1
+    volumeVariance: 1
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Bounce02
+    clip: {fileID: 8300000, guid: 811a4d83f6a067f49999cda7d8d115ce, type: 3}
+    volume: 1
+    volumeVariance: 1
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &514140606
 GameObject:
   m_ObjectHideFlags: 0
