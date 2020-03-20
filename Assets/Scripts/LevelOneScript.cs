@@ -37,9 +37,9 @@ public class LevelOneScript : BaseScript
             this.Obstacls.Add(ob);
         }
 
-        var finischpos = new Vector3(0, this.Ground.transform.localScale.y / 2 + Finish.transform.localScale.y / 2,
+        var finishpos = new Vector3(0, this.Ground.transform.localScale.y / 2 + Finish.transform.localScale.y / 2,
             this.Ground.transform.localScale.z - 5);
-        Instantiate(Finish, finischpos
+        Instantiate(Finish, finishpos
             , Quaternion.identity);
     }
 

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class FinishScript : BaseScript
 {
+    public GameObject Finish;
+
+    void Awake()
+    {
+        var tempPos = this.transform.position;
+        tempPos.y = 0.5001f;
+        Instantiate(Finish, tempPos, Quaternion.Euler(0, 180, 0));
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         this.GameManager.FinishLevel();

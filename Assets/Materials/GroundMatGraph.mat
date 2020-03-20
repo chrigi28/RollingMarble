@@ -20,22 +20,22 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GroundMat
-  m_Shader: {fileID: -6465566751694194690, guid: c2250e962d390c640b486340c7d07848,
-    type: 3}
+  m_Name: GroundMatGraph
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: _EMISSION _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _SPECULAR_SETUP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2050
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 00d518df1ec7af64b9bc1f6dfe864d88, type: 3}
-        m_Scale: {x: 1, y: 50}
+        m_Scale: {x: 1, y: 100}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 42b08437e9759f04e86174bf8d3ac17e, type: 3}
@@ -59,7 +59,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 00d518df1ec7af64b9bc1f6dfe864d88, type: 3}
-        m_Scale: {x: 1, y: 50}
+        m_Scale: {x: 1, y: 100}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: 38b686128f8b2374ea1e8174a502e6a4, type: 3}
@@ -79,10 +79,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_2B8D2718_Texture_1:
         m_Texture: {fileID: 2800000, guid: 38b686128f8b2374ea1e8174a502e6a4, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_8E834D20_Texture_1:
-        m_Texture: {fileID: 2800000, guid: f93ae818900be104fa683a356b0726db, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_9605830_Texture_1:

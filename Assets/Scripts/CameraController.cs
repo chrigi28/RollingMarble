@@ -18,6 +18,8 @@ public class CameraController : BaseScript
     // Update is called once per frame
     void LateUpdate()
     {
-        this.Camera.transform.position = this.Player.transform.position + this.Offset;
+        var camPos = this.Camera.transform.position;
+        var offsetVal = this.Player.transform.position + this.Offset;
+        this.Camera.transform.position = new Vector3(offsetVal.x, camPos.y, offsetVal.z);
     }
 }

@@ -63,12 +63,6 @@ public class DefaultPlayerController : BaseScript
                 forceToAdd.z = Input.GetAxis(vertical);
             }
 
-            if (this.rigidbody.transform.position.y > 3)
-            {
-                // increased gravity
-                this.rigidbody.AddForce(0, -JumpMultiplier / 4, 0, ForceMode.Impulse);
-            }
-
             if (Input.touchSupported)
             {
                 
@@ -87,8 +81,14 @@ public class DefaultPlayerController : BaseScript
             this.rigidbody.velocity = new Vector3(0, 0, 0);
         }
 
-        this.rigidbody.AddForce(forceToAdd * this.moveMultiplier * Time.deltaTime);
+        if (this.rigidbody.transform.position.y > 3)
+        {
+            // increased gravity
+            forceToAdd.y = -1;
+        }
 
+        this.rigidbody.AddForce(forceToAdd * this.moveMultiplier * Time.deltaTime);
+    
 
         if (this.rigidbody.velocity.z > this.MaxSpeed)
         {
@@ -102,6 +102,8 @@ public class DefaultPlayerController : BaseScript
         if (this.rigidbody.transform.position.y < 1.02)
         {
             this.rigidbody.AddForce(0, JumpMultiplier, 0, ForceMode.Impulse);
+            ////var tempval = this.rigidbody.velocity;
+            ////this.rigidbody.velocity = new Vector3(tempval.x, this.JumpMultiplier, tempval.z);
             Debug.Log("JUMP");
         }
     }

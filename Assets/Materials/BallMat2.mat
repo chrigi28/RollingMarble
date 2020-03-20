@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BallMat2
-  m_Shader: {fileID: -6465566751694194690, guid: b6468493879102440b64869ce20dd0a1,
+  m_Shader: {fileID: -6465566751694194690, guid: c63fcb503f1aabe4ba62f426b1ae221b,
     type: 3}
   m_ShaderKeywords: _EMISSION _NORMALMAP _SPECGLOSSMAP
   m_LightmapFlags: 2
@@ -123,6 +123,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_E71FC34B_Texture_1:
         m_Texture: {fileID: 2800000, guid: 498635d8a6362124da5a5ffec7950281, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_E76133D0_Texture_1:
+        m_Texture: {fileID: 2800000, guid: c24ab176a6397e341a03d5de9880bf0c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
