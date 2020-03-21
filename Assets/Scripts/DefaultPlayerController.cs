@@ -26,7 +26,7 @@ public class DefaultPlayerController : BaseScript
     {
         //input.Player.Movement.performed += ctx => this.Move(ctx.ReadValue<Vector2>());
         rigidbody = this.Player.GetComponent<Rigidbody>();
-        this.GameManager.ContinueGame();
+        GameManager.Instance.ContinueGame();
 
         if (SystemInfo.supportsGyroscope)
         {
@@ -38,7 +38,7 @@ public class DefaultPlayerController : BaseScript
     {
         if (this.rigidbody.position.y < -1)
         {
-            this.GameManager.PauseGame();
+            GameManager.Instance.PauseGame();
         }
     }
 
@@ -48,7 +48,7 @@ public class DefaultPlayerController : BaseScript
     {
         var forceToAdd = Vector3.zero;
 
-        if (this.GameManager.IsRunning())
+        if (GameManager.Instance.IsRunning())
         {
 
             if (SystemInfo.supportsAccelerometer)

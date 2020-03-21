@@ -6,12 +6,4 @@ using UnityEngine.UI;
 
 public class BaseScript : MonoBehaviour
 {
-    private GameManager gameManager;
-
-    protected GameManager GameManager
-    {
-        get => this.gameManager ?? (this.gameManager = GameManager.Instance);
-        ////get => this.gameManager ?? (this.gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>());
-        set { this.gameManager = value; }
-    }
 }

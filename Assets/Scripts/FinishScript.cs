@@ -15,6 +15,6 @@ public class FinishScript : BaseScript
 
     private void OnTriggerEnter(Collider other)
     {
-        this.GameManager.FinishLevel();
+        GameManager.Instance.FinishLevel();
     }
 }

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; 
+    public static GameManager Instance { get; private set; } 
+
     public static EGameState GameState = EGameState.Paused;
 
     public GameObject GameOverPanel;
@@ -18,14 +19,16 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
             Destroy(gameObject);
             return;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         this.DisableMenus();
     }
@@ -75,11 +78,9 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        this.GameOverPanel.SetActive(false);
-        this.PausePanel.SetActive(false);
+        this.DisableMenus();
         GameState = EGameState.Running;
         Time.timeScale = 1;
-
     }
 
     public void ShowSettings()

@@ -29,7 +29,7 @@ public class TimerScript : BaseScript
     // Update is called once per frame
     void Update()
     {
-        if (this.GameManager.IsCountDown)
+        if (GameManager.Instance.IsCountDown)
         {
             this.currentTime -= Time.deltaTime;
             
@@ -40,7 +40,7 @@ public class TimerScript : BaseScript
             else
             {
                 this.CountdownText.text = "GO!";
-                this.GameManager.ContinueGame();
+                GameManager.Instance.ContinueGame();
                 this.currentTime = 0f;
                 this.animator.Play("TextFade");
             }
