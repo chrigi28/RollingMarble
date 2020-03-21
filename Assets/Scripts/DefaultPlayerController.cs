@@ -26,8 +26,6 @@ public class DefaultPlayerController : BaseScript
     {
         //input.Player.Movement.performed += ctx => this.Move(ctx.ReadValue<Vector2>());
         rigidbody = this.Player.GetComponent<Rigidbody>();
-        GameManager.Instance.ContinueGame();
-
         if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;
@@ -36,7 +34,7 @@ public class DefaultPlayerController : BaseScript
 
     void Update()
     {
-        if (this.rigidbody.position.y < -1)
+        if (GameManager.Instance.IsRunning() && this.rigidbody.position.y < -1)
         {
             GameManager.Instance.PauseGame();
         }

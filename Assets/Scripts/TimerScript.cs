@@ -21,9 +21,16 @@ public class TimerScript : BaseScript
     // Start is called before the first frame update
     void Start()
     {
+
+        this.CountdownText.enabled = true;
         CounterText.text = string.Empty;
         this.currentTime = this.StartTime;
-        GameManager.GameState = EGameState.Countdown;
+        GameManager.Instance.SetGameState(EGameState.Countdown);
+    }
+
+    public void Restart()
+    {
+        this.Start();
     }
 
     // Update is called once per frame
@@ -46,6 +53,7 @@ public class TimerScript : BaseScript
             }
         }
         else
+        if (GameManager.Instance.IsRunning())
         {
             if (this.currentTime > 1f)
             {
