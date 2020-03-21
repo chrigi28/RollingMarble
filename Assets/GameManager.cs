@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,14 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; } 
 
-    public static EGameState GameState = EGameState.Paused;
+    private EGameState gameState = EGameState.Paused;
 
     public GameObject GameOverPanel;
     public GameObject PausePanel;
     private GameObject currentLevel;
-    
-    public bool IsCountDown => GameState == EGameState.Countdown;
-
 
     void Awake()
     {
@@ -46,6 +44,12 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        var timerScript = gameObject.GetComponentInChildren<TimerScript>();
+        this.DisableMenus();
+        gameState = EGameState.Countdown;
+        Time.timeScale = 1;
+        timerScript.Restart();
+
     }
 
     public void SelectLevel()
@@ -60,14 +64,21 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        GameState = EGameState.Paused;
+        gameState = EGameState.Paused;
         this.GameOverPanel.SetActive(true);
         Time.timeScale = 0;
     }
 
     public bool IsRunning()
     {
-        return GameState == EGameState.Running;
+        return gameState == EGameState.Running;
+    }
+
+    public bool IsCountDown => gameState == EGameState.Countdown;
+
+    public bool IsPaused()
+    {
+        return gameState == EGameState.Paused;
     }
 
     public void DisableMenus()
@@ -79,7 +90,7 @@ public class GameManager : MonoBehaviour
     public void ContinueGame()
     {
         this.DisableMenus();
-        GameState = EGameState.Running;
+        gameState = EGameState.Running;
         Time.timeScale = 1;
     }
 
@@ -102,5 +113,10 @@ public class GameManager : MonoBehaviour
         // show next start level
         // show level select 
         // show go home
+    }
+
+    public void SetGameState(EGameState state)
+    {
+        this.gameState = state;
     }
 }

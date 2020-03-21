@@ -530,7 +530,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea6cdd661879d2e4ba36c8e14c0bd35c, type: 2}
+  - {fileID: 2100000, guid: eeb1215c2cf68fa4d89d0acd8c380252, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -589,8 +589,10 @@ MonoBehaviour:
     type: 3}
   Block2x5y: {fileID: 4449346670576477571, guid: 20f24d25e1ee0ca429e301cf1c1d13c8,
     type: 3}
+  Player: {fileID: 732683629}
   Ground: {fileID: 535129270}
   Finish: {fileID: 2317918802573636401, guid: 17051326cc5bffc449c47fdc8223dbab, type: 3}
+  NumbersOfObstacles: 100
   RandomSeed: 282828
   firstObstecleDistance: 12.5
 --- !u!1 &695865216
@@ -737,7 +739,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c54b991916a2a9946a0db352f0c2783a, type: 2}
+  - {fileID: 2100000, guid: 4507d015a5fbf0e48b5a97da786da37a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -813,6 +815,24 @@ MonoBehaviour:
   moveMultiplier: 2500
   JumpMultiplier: 15
   Player: {fileID: 732683629}
+--- !u!1 &1254644435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 614433227789219327, guid: 24531abf64456b64bb3a247b2dd24557,
+    type: 3}
+  m_PrefabInstance: {fileID: 614433227941653712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1254644439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254644435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05cf0baac7b95364badec6363128ccb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &614433227941653712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -820,6 +840,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 614433226228962261, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 614433226228962261, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ContinueGame
+      objectReference: {fileID: 0}
     - target: {fileID: 614433226246982582, guid: 24531abf64456b64bb3a247b2dd24557,
         type: 3}
       propertyPath: m_AnchoredPosition.y

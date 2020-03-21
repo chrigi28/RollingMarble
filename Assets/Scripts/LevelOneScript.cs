@@ -6,8 +6,10 @@ public class LevelOneScript : BaseScript
 {
     public GameObject Block1x5y;
     public GameObject Block2x5y;
+    public GameObject Player;
     public GameObject Ground;
     public GameObject Finish;
+    [SerializeField] int NumbersOfObstacles = 100;
     public int RandomSeed = 282828;
     public float firstObstecleDistance = 12.5f;
 
@@ -19,10 +21,10 @@ public class LevelOneScript : BaseScript
     {
         Random.InitState(RandomSeed);
         this.Obstacls = new List<GameObject>();
-        int noOfObst = 100;
-        int count1 = Random.Range(25, noOfObst);
-        int count2 = noOfObst - count1;
-        for (int i = 0; i < noOfObst; i++)
+        
+        int count1 = Random.Range(25, NumbersOfObstacles);
+        int count2 = NumbersOfObstacles - count1;
+        for (int i = 0; i < NumbersOfObstacles; i++)
         {
             GameObject ob;
             if (count1 > 0 && count1 % 2 == 0)
@@ -41,6 +43,19 @@ public class LevelOneScript : BaseScript
             this.Ground.transform.localScale.z - 5);
         Instantiate(Finish, finishpos
             , Quaternion.identity);
+    }
+
+    void Start()
+    {
+        SetPlayerPosition();
+    }
+
+    private void SetPlayerPosition()
+    {
+        var pos = Ground.transform.position;
+        pos.y = 1;
+        pos.z -= Ground.transform.localScale.z / 2;
+        this.Player.transform.position = pos;
     }
 
     // Update is called once per frame
