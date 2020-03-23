@@ -840,6 +840,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 543155328290865634, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0000081062
+      objectReference: {fileID: 0}
+    - target: {fileID: 543155328290865634, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -89
+      objectReference: {fileID: 0}
     - target: {fileID: 614433226228962261, guid: 24531abf64456b64bb3a247b2dd24557,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -999,6 +1009,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945323486918485102, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779676014855845936, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779676014855845936, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 543
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24531abf64456b64bb3a247b2dd24557, type: 3}

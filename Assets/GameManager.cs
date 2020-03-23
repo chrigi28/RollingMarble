@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         var timerScript = gameObject.GetComponentInChildren<TimerScript>();
         this.DisableMenus();
         gameState = EGameState.Countdown;
