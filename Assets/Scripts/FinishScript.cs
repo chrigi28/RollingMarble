@@ -1,20 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FinishScript : BaseScript
+namespace Assets.Scripts
 {
-    public GameObject Finish;
-
-    void Awake()
+    public class FinishScript : BaseScript
     {
-        var tempPos = this.transform.position;
-        tempPos.y = 0.5001f;
-        Instantiate(Finish, tempPos, Quaternion.Euler(0, 180, 0));
-    }
+        public GameObject Finish;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        GameManager.Instance.FinishLevel();
+        void Awake()
+        {
+            var tempPos = this.transform.position;
+            tempPos.y = 0.5001f;
+            Instantiate(Finish, tempPos, Quaternion.Euler(0, 180, 0));
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            GameManager.Instance.FinishLevel();
+        }
     }
 }
