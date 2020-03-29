@@ -37,7 +37,7 @@ public class CanvasScript : MonoBehaviour
 
     public void TogglePause()
     {
-        this.PausePanel.SetActive(!GameManager.Instance.IsPaused());
+        this.PausePanel.SetActive(GameManager.Instance.IsPaused());
     }
 
     public void DisableMenus()

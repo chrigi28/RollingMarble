@@ -89,8 +89,8 @@ namespace Assets
 
         public void ContinueGame()
         {
-            this.DisableMenus();
             gameState = EGameState.Running;
+            this.DisableMenus();
             Time.timeScale = 1;
         }
 
@@ -101,6 +101,8 @@ namespace Assets
 
         public void ShowHome()
         {
+
+            SceneManager.LoadScene(0);
             Debug.Log("Settings Requested");
         }
 
