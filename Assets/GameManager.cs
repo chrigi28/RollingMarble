@@ -43,7 +43,8 @@ namespace Assets
 
         public void RestartLevel()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(1);
             var timerScript = gameObject.GetComponentInChildren<TimerScript>();
             this.DisableMenus();
             gameState = EGameState.Countdown;
