@@ -5,8 +5,8 @@ namespace Assets.Scripts
 {
     public class LevelOneScript : BaseScript
     {
-        public GameObject Block1x5y;
-        public GameObject Block2x5y;
+        [SerializeField]
+        public GameObject[] Obstacles;
         public GameObject Player;
         public GameObject Ground;
         public GameObject Finish;
@@ -14,30 +14,30 @@ namespace Assets.Scripts
         public int RandomSeed = 282828;
         public float firstObstecleDistance = 12.5f;
 
-        private List<GameObject> Obstacls;
+        ////private List<GameObject> Obstacls;
     
 
         // Start is called before the first frame update
         void Awake()
         {
             Random.InitState(RandomSeed);
-            this.Obstacls = new List<GameObject>();
+            ////this.Obstacls = new List<GameObject>();
         
             int count1 = Random.Range(25, NumbersOfObstacles);
             int count2 = NumbersOfObstacles - count1;
             for (int i = 0; i < NumbersOfObstacles; i++)
             {
                 GameObject ob;
-                if (count1 > 0 && count1 % 2 == 0)
+                if (i % 2 == 0)
                 {
-                    ob = Instantiate(Block1x5y, this.GetRandomPosition(Block1x5y), Quaternion.identity);
+                    ob = Instantiate(Obstacles[0], this.GetRandomPosition(Obstacles[0]), Quaternion.identity);
                 }
                 else
                 {
-                    ob = Instantiate(Block2x5y, this.GetRandomPosition(Block2x5y), Quaternion.identity);
+                    ob = Instantiate(Obstacles[1], this.GetRandomPosition(Obstacles[1]), Quaternion.identity);
                 }
 
-                this.Obstacls.Add(ob);
+                ////this.Obstacls.Add(ob);
             }
 
             var finishpos = new Vector3(0, this.Ground.transform.localScale.y / 2 + Finish.transform.localScale.y / 2,

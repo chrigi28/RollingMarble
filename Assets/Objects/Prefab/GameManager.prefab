@@ -2534,8 +2534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4cd95835155674b819f0f24e8fa4ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverPanel: {fileID: 614433226246982581}
-  PausePanel: {fileID: 614433227197315309}
+  Canvas: {fileID: 614433227897931118}
 --- !u!114 &614433227789219298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2591,6 +2590,7 @@ GameObject:
   - component: {fileID: 614433227897931119}
   - component: {fileID: 614433227897931028}
   - component: {fileID: 614433227897931027}
+  - component: {fileID: 7971274530861269427}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2716,6 +2716,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7971274530861269427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614433227897931118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0909d5f352afbf841af947eae0068e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverPanel: {fileID: 614433226246982581}
+  PausePanel: {fileID: 614433227197315309}
+  FinishPanel: {fileID: 2945323486918485102}
 --- !u!1 &614433227902614844
 GameObject:
   m_ObjectHideFlags: 0

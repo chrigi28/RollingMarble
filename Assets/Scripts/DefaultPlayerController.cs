@@ -35,7 +35,7 @@ namespace Assets.Scripts
         {
             if (GameManager.Instance.IsRunning() && this.rigidbody.position.y < -1)
             {
-                GameManager.Instance.PauseGame();
+                GameManager.Instance.GameOver();
             }
         }
 

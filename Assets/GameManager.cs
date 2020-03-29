@@ -10,11 +10,9 @@ namespace Assets
 
         private EGameState gameState = EGameState.Paused;
 
-        public GameObject GameOverPanel;
-        public GameObject PausePanel;
         public GameObject Canvas;
         private GameObject currentLevel;
-    
+        private CanvasScript canvasScript;
 
         void Awake()
         {
@@ -29,6 +27,7 @@ namespace Assets
                 return;
             }
 
+            this.canvasScript = this.Canvas.GetComponent<CanvasScript>();
             this.DisableMenus();
         }
 
@@ -65,9 +64,9 @@ namespace Assets
 
         public void PauseGame()
         {
-            gameState = EGameState.Paused;
-            this.GameOverPanel.SetActive(true);
             Time.timeScale = 0;
+            gameState = EGameState.Paused;
+            this.canvasScript.TogglePause();
         }
 
         public bool IsRunning()
@@ -84,8 +83,7 @@ namespace Assets
 
         public void DisableMenus()
         {
-            this.GameOverPanel.SetActive(false);
-            this.PausePanel.SetActive(false);
+            this.canvasScript.DisableMenus();
         }
 
         public void ContinueGame()
@@ -108,7 +106,10 @@ namespace Assets
         public void FinishLevel()
         {
             Debug.Log("GameFinished");
-            this.PauseGame();
+            this.canvasScript.ShowFinish();
+            Time.timeScale = 0;
+            gameState = EGameState.Paused;
+            
             // show time
             // show Score (nr * )
             // show next start level
@@ -119,6 +120,13 @@ namespace Assets
         public void SetGameState(EGameState state)
         {
             this.gameState = state;
+        }
+
+        public void GameOver()
+        {
+            Time.timeScale = 0;
+            gameState = EGameState.Paused;
+            this.canvasScript.SetGameOver(true);
         }
     }
 }
