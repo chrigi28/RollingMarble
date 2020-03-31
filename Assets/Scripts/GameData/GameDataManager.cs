@@ -10,6 +10,7 @@ namespace Assets.Scripts.GameData
     [Serializable]
     public static class GameDataManager
     {
+        private const string playerFile = "player.bin";
         static void test()
         {
             var a = LoadData<LevelData>(1);
@@ -53,9 +54,37 @@ namespace Assets.Scripts.GameData
                 return $"level{index}.bin";
             }
 
-            ////if (typeof(T) == typeof())
-
             return string.Empty;
+        }
+
+        public static void SavePlayerData(PlayerData playerData)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            string path = Path.Combine(Application.persistentDataPath, playerFile);
+
+            FileStream stream = new FileStream(path, FileMode.Create);
+
+            formatter.Serialize(stream, playerData);
+            stream.Close();
+        }
+
+        public static PlayerData LoadPlayerData()
+        {
+            string path = Path.Combine(Application.persistentDataPath, playerFile);
+            if (File.Exists(path))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream stream = new FileStream(path, FileMode.Open);
+                PlayerData data = (PlayerData)formatter.Deserialize(stream);
+                stream.Close();
+
+                return data;
+            }
+            else
+            {
+                Debug.Log($"File: {path} not found!");
+                throw new IOException($"file not found: {path}");
+            }
         }
     }
 }

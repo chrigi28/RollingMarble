@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.GameData;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,8 +7,9 @@ namespace Assets
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance { get; private set; } 
-
+        public static GameManager Instance { get; private set; }
+        public PlayerData PlayerData { get; set; }
+        
         private EGameState gameState = EGameState.Paused;
 
         public GameObject Canvas;
@@ -130,6 +132,11 @@ namespace Assets
             Time.timeScale = 0;
             gameState = EGameState.Paused;
             this.canvasScript.SetGameOver(true);
+        }
+
+        public void LoadPlayerData()
+        {
+            this.PlayerData = GameDataManager.LoadPlayerData();
         }
     }
 }
