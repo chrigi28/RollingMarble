@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.GameData;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Assets
 {
@@ -55,9 +57,15 @@ namespace Assets
 
         }
 
-        public void SelectLevel()
+        public void SelectLevel(TextMeshProUGUI t)
         {
             //load LevelSelectionScene
+            this.LoadLevel(int.Parse(t.text));
+        }
+
+        private void LoadLevel(int level)
+        {
+            SceneManager.LoadScene(level);
         }
 
         public void Quit()
