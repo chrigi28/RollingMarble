@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,7 @@ public class MainMenuScript : MonoBehaviour
 
     void Awake()
     {
+        
         ////var levelData = GameManager.Instance.PlayerData.LevelDatas?.OrderBy(f => f.levelNumber);
         ////if (levelData != null)
         ////{
@@ -37,12 +39,13 @@ public class MainMenuScript : MonoBehaviour
             {
                 var button = Instantiate(ButtonPrefab, GridContent.transform);
                 // get button text component in children and set the text property
-                button.GetComponentInChildren<Text>().text = i.ToString();
+                var textmesh = button.transform.Find("LevelButtonText").GetComponent<TextMeshProUGUI>();
+                textmesh.text = i.ToString();
                 var stars = button.GetComponentsInChildren<Image>(true);
                 var lockImage = button.transform.Find("Lock").GetComponent<Image>();
-                if (i < 5)
+                if (i < 4)
                 {
-                    lockImage.enabled = true;
+                    lockImage.enabled = false;
                 }
             }
     }                                                           
