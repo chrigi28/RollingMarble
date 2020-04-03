@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.535
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.535}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -457,7 +457,9 @@ MonoBehaviour:
   Ground: {fileID: 535129270}
   Finish: {fileID: 2317918802573636401, guid: 17051326cc5bffc449c47fdc8223dbab, type: 3}
   NumbersOfObstacles: 200
-  RandomSeed: 1
+  addBorderStopps: 1
+  randomizeRotation: 0
+  RandomSeed: 2
   firstObstecleDistance: 12.5
 --- !u!1 &695865216
 GameObject:
@@ -604,7 +606,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c589ac9f17c5de040833c92fa3d86bbe, type: 2}
   - {fileID: 2100000, guid: c589ac9f17c5de040833c92fa3d86bbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class CameraController : BaseScript
+    public class CameraController : MonoBehaviour
     {
         public GameObject Camera;
         public GameObject Player;

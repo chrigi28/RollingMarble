@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
-    public class TimerScript : BaseScript
+    public class TimerScript : MonoBehaviour
     {
         private float currentTime = 0f;
         private float StartTime = 5f;
@@ -20,9 +20,11 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
-
             this.CountdownText.enabled = true;
             CounterText.text = string.Empty;
+            var color = CountdownText.color;
+            color.a = 1f;
+            CountdownText.color = color;
             this.currentTime = this.StartTime;
             GameManager.Instance.SetGameState(EGameState.Countdown);
         }

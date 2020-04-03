@@ -18,6 +18,10 @@ public class CanvasScript : MonoBehaviour
     [SerializeField] 
     private GameObject FinishPanel;
 
+    [UsedImplicitly]
+    [SerializeField] 
+    private GameObject ContDownLabel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,5 +54,9 @@ public class CanvasScript : MonoBehaviour
     public void ShowFinish()
     {
         this.FinishPanel.SetActive(true);
+    }
+
+    public void StartGame()
+    {
     }
 }

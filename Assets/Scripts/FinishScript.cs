@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class FinishScript : BaseScript
+    public class FinishScript : MonoBehaviour
     {
         public GameObject Finish;
 

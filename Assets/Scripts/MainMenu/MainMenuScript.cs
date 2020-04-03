@@ -11,6 +11,8 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private GameObject GridContent;
     [SerializeField] private Button ButtonPrefab;
 
+    private List<Button> levels = new List<Button>();
+
     void Awake()
     {
         
@@ -47,6 +49,8 @@ public class MainMenuScript : MonoBehaviour
                 {
                     lockImage.enabled = false;
                 }
+
+                levels.Add(button);
             }
     }                                                           
 }

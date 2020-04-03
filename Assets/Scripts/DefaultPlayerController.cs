@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts
 {
-    public class DefaultPlayerController : BaseScript
+    public class DefaultPlayerController : MonoBehaviour
     {
 
         public Vector3 MinSpeed = new Vector3(0f, 0f, 2f);

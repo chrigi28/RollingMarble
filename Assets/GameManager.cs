@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿using System.Security.Cryptography.X509Certificates;
+using Assets.Scripts;
 using Assets.Scripts.GameData;
 using TMPro;
 using UnityEngine;
@@ -47,20 +48,30 @@ namespace Assets
 
         public void RestartLevel()
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene(1);
-            var timerScript = gameObject.GetComponentInChildren<TimerScript>();
-            this.DisableMenus();
-            gameState = EGameState.Countdown;
-            Time.timeScale = 1;
-            timerScript.Restart();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            this.StartCountDown();
+        }
 
+        public void GoToLevelSelection()
+        {
+            SceneManager.LoadScene(0);
         }
 
         public void SelectLevel(TextMeshProUGUI t)
         {
             //load LevelSelectionScene
             this.LoadLevel(int.Parse(t.text));
+            this.DisableMenus();
+            this.StartCountDown();
+        }
+
+        private void StartCountDown()
+        {
+            var timerScript = gameObject.GetComponentInChildren<TimerScript>();
+            this.DisableMenus();
+            gameState = EGameState.Countdown;
+            Time.timeScale = 1;
+            timerScript.Restart();
         }
 
         private void LoadLevel(int level)
