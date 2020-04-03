@@ -99,7 +99,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1031,7 +1031,6 @@ GameObject:
   - component: {fileID: 139943745}
   - component: {fileID: 139943744}
   - component: {fileID: 139943743}
-  - component: {fileID: 139943742}
   m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
@@ -1039,25 +1038,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!114 &139943742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139943741}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94423d04c2a769e489fdaee20e6ca284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Obstacles: []
-  Player: {fileID: 886541788}
-  Ground: {fileID: 139943741}
-  Finish: {fileID: 2317918802573636401, guid: 17051326cc5bffc449c47fdc8223dbab, type: 3}
-  NumbersOfObstacles: 100
-  RandomSeed: 282828
-  firstObstecleDistance: 12.5
 --- !u!65 &139943743
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1089,7 +1069,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea6cdd661879d2e4ba36c8e14c0bd35c, type: 2}
   - {fileID: 2100000, guid: ea6cdd661879d2e4ba36c8e14c0bd35c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5367,6 +5346,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 614433227902614847, guid: 24531abf64456b64bb3a247b2dd24557,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2945323486918485102, guid: 24531abf64456b64bb3a247b2dd24557,
         type: 3}
       propertyPath: m_IsActive
@@ -6488,7 +6472,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &1544772052

@@ -122,12 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &67525474 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2945323486918485102, guid: 24531abf64456b64bb3a247b2dd24557,
-    type: 3}
-  m_PrefabInstance: {fileID: 614433227941653712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &419368675
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,12 +332,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!1 &511346427 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 614433227197315309, guid: 24531abf64456b64bb3a247b2dd24557,
-    type: 3}
-  m_PrefabInstance: {fileID: 614433227941653712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &535129270
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +447,7 @@ MonoBehaviour:
   NumbersOfObstacles: 200
   addBorderStopps: 1
   randomizeRotation: 0
-  RandomSeed: 2
+  RandomSeed: 3
   firstObstecleDistance: 12.5
 --- !u!1 &695865216
 GameObject:
@@ -682,27 +670,6 @@ MonoBehaviour:
   moveMultiplier: 2500
   JumpMultiplier: 15
   Player: {fileID: 732683629}
---- !u!1 &1182877360 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 614433227897931118, guid: 24531abf64456b64bb3a247b2dd24557,
-    type: 3}
-  m_PrefabInstance: {fileID: 614433227941653712}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1182877367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1182877360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0909d5f352afbf841af947eae0068e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameOverPanel: {fileID: 1528856646}
-  PausePanel: {fileID: 511346427}
-  FinishPanel: {fileID: 67525474}
 --- !u!1 &1254644435 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 614433227789219327, guid: 24531abf64456b64bb3a247b2dd24557,
@@ -721,12 +688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05cf0baac7b95364badec6363128ccb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1528856646 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 614433226246982581, guid: 24531abf64456b64bb3a247b2dd24557,
-    type: 3}
-  m_PrefabInstance: {fileID: 614433227941653712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055438824
 GameObject:
   m_ObjectHideFlags: 0

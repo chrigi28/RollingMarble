@@ -18,7 +18,8 @@ namespace Assets
         public GameObject Canvas;
         private GameObject currentLevel;
         private CanvasScript canvasScript;
-
+        private TimerScript timerScript;
+        
         void Awake()
         {
             if (Instance == null)
@@ -38,6 +39,7 @@ namespace Assets
 
         void Start()
         {
+            timerScript = this.Canvas.GetComponent<TimerScript>();
             this.DisableMenus();
         }
 
@@ -67,7 +69,6 @@ namespace Assets
 
         private void StartCountDown()
         {
-            var timerScript = gameObject.GetComponentInChildren<TimerScript>();
             this.DisableMenus();
             gameState = EGameState.Countdown;
             Time.timeScale = 1;
@@ -130,7 +131,7 @@ namespace Assets
         public void FinishLevel()
         {
             Debug.Log("GameFinished");
-            this.canvasScript.ShowFinish();
+            this.canvasScript.ShowFinish(this.timerScript.GetTime());
             Time.timeScale = 0;
             gameState = EGameState.Paused;
             

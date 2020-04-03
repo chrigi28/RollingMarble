@@ -29,6 +29,11 @@ namespace Assets.Scripts
             GameManager.Instance.SetGameState(EGameState.Countdown);
         }
 
+        public float GetTime()
+        {
+            return this.currentTime;
+        }
+
         public void Restart()
         {
             this.Start();
