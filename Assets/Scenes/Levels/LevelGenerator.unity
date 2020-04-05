@@ -420,8 +420,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535129270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 749}
-  m_LocalScale: {x: 10, y: 1, z: 1500}
+  m_LocalPosition: {x: 0, y: 0, z: 374}
+  m_LocalScale: {x: 10, y: 1, z: 750}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -444,10 +444,11 @@ MonoBehaviour:
   Player: {fileID: 732683629}
   Ground: {fileID: 535129270}
   Finish: {fileID: 2317918802573636401, guid: 17051326cc5bffc449c47fdc8223dbab, type: 3}
-  NumbersOfObstacles: 200
+  NumbersOfObstacles: 50
   addBorderStopps: 1
-  randomizeRotation: 0
-  RandomSeed: 3
+  randomizeSizes: 1
+  randomizeRotation: 1
+  RandomSeed: 2
   firstObstecleDistance: 12.5
 --- !u!1 &695865216
 GameObject:
@@ -815,7 +816,7 @@ PrefabInstance:
     - target: {fileID: 614433226246982582, guid: 24531abf64456b64bb3a247b2dd24557,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0000033379
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 614433226246982583, guid: 24531abf64456b64bb3a247b2dd24557,
         type: 3}

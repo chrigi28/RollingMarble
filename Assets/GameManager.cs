@@ -25,6 +25,11 @@ namespace Assets
             if (Instance == null)
             {
                 Instance = this;
+                if (Application.platform == RuntimePlatform.Android)
+                {
+                    Application.targetFrameRate = 30;
+                }
+
                 DontDestroyOnLoad(gameObject);
             }
             else
