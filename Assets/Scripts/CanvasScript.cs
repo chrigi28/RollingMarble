@@ -53,11 +53,12 @@ public class CanvasScript : MonoBehaviour
         this.FinishPanel.SetActive(false);
     }
 
-    public void ShowFinish(float time)
+    public void ShowFinish(float time, float besttime)
     {
         var finishTime = this.FinishPanel.GetComponentsInChildren<TextMeshProUGUI>().FirstOrDefault(f => f.name == "Time");
         finishTime.text = $"{time.ToString("F")}s";
-
+        var bestTime = this.FinishPanel.GetComponentsInChildren<TextMeshProUGUI>().FirstOrDefault(f => f.name == "TimeBest");
+        bestTime.text = $"{besttime.ToString("F")}s";
         this.FinishPanel.SetActive(true);
     }
 

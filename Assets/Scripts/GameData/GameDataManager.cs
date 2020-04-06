@@ -78,12 +78,19 @@ namespace Assets.Scripts.GameData
                 PlayerData data = (PlayerData)formatter.Deserialize(stream);
                 stream.Close();
 
+                if (data == null)
+                {
+                    data = new PlayerData();
+                }
+
+                PlayerData.Instance = data;
                 return data;
             }
             else
             {
-                Debug.Log($"File: {path} not found!");
-                throw new IOException($"file not found: {path}");
+                Debug.Log($"File: {path} not found! New Instance Created");
+                PlayerData.Instance = new PlayerData();
+                return PlayerData.Instance;
             }
         }
     }

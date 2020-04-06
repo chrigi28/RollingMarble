@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2981996674226870785}
   - component: {fileID: 2981996674226870784}
   - component: {fileID: 2981996674226870799}
-  - component: {fileID: 2981996674226870787}
   m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
@@ -94,28 +93,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2981996674226870787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2981996674226870798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94423d04c2a769e489fdaee20e6ca284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Obstacles:
-  - {fileID: 2683402629134971597, guid: d0482b2fdbdf6d34989e6e760a60cae9, type: 3}
-  - {fileID: 4449346670576477571, guid: 20f24d25e1ee0ca429e301cf1c1d13c8, type: 3}
-  Player: {fileID: 0}
-  GroundPrefab: {fileID: 0}
-  Finish: {fileID: 2317918802573636401, guid: 17051326cc5bffc449c47fdc8223dbab, type: 3}
-  NumbersOfObstacles: 50
-  addBorderStopps: 1
-  randomizeSizes: 1
-  randomizeRotation: 1
-  RandomSeed: 2
-  firstObstecleDistance: 12.5
-  distance: 750

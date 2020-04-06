@@ -11,26 +11,22 @@ namespace Assets
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
-        public PlayerData PlayerData { get; set; }
-        
+
         private EGameState gameState = EGameState.Paused;
 
         public GameObject Canvas;
         private GameObject currentLevel;
         private CanvasScript canvasScript;
         private TimerScript timerScript;
-        
+        private PlayerData playerdata;        
         void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
-                if (Application.platform == RuntimePlatform.Android)
-                {
-                    Application.targetFrameRate = 30;
-                }
-
                 DontDestroyOnLoad(gameObject);
+
+                this.InitGameVariables();
             }
             else
             {
@@ -40,6 +36,12 @@ namespace Assets
 
             this.canvasScript = this.Canvas.GetComponent<CanvasScript>();
             this.DisableMenus();
+        }
+
+        private void InitGameVariables()
+        {
+            GameDataManager.LoadPlayerData();
+            this.playerdata = PlayerData.Instance;
         }
 
         void Start()
@@ -82,6 +84,7 @@ namespace Assets
 
         private void LoadLevel(int level)
         {
+            PlayerData.Instance.CurrentLevel = level;
             SceneManager.LoadScene(level);
         }
 
@@ -136,10 +139,19 @@ namespace Assets
         public void FinishLevel()
         {
             Debug.Log("GameFinished");
-            this.canvasScript.ShowFinish(this.timerScript.GetTime());
+            var time = this.timerScript.GetTime();
+            var bestTime = this.playerdata.GetBestTimeOfCurrentLevel();
+            if (time < bestTime)
+            {
+                bestTime = time;
+            }
+
+            this.canvasScript.ShowFinish(time, bestTime);
             Time.timeScale = 0;
             gameState = EGameState.Paused;
-            
+
+            this.playerdata.SetLevelData(this.playerdata.CurrentLevel, time, 1);
+
             // show time
             // show Score (nr * )
             // show next start level
@@ -157,11 +169,6 @@ namespace Assets
             Time.timeScale = 0;
             gameState = EGameState.Paused;
             this.canvasScript.SetGameOver(true);
-        }
-
-        public void LoadPlayerData()
-        {
-            this.PlayerData = GameDataManager.LoadPlayerData();
         }
     }
 }
