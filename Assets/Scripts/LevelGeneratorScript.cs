@@ -9,15 +9,18 @@ namespace Assets.Scripts
     {
         [SerializeField] public GameObject[] Obstacles;
         [SerializeField] GameObject Player;
-        [SerializeField] GameObject Ground;
+        [SerializeField] GameObject GroundPrefab;
+        
         [SerializeField] GameObject Finish;
         [SerializeField] int NumbersOfObstacles = 100;
         [SerializeField] bool addBorderStopps = true;
-        [SerializeField] bool randomizeSizes = false;
-        [SerializeField] bool randomizeRotation = false;
-        [SerializeField] int RandomSeed = 282828;
+        [SerializeField] bool randomizeSizes = true;
+        [SerializeField] bool randomizeRotation = true;
+        [SerializeField] int RandomSeed = 2;
         [SerializeField] float firstObstecleDistance = 12.5f;
+        [SerializeField] float distance = 750;
 
+        GameObject ground;
         private float lastZPosition;
         ////private List<GameObject> Obstacls;
     
@@ -25,7 +28,7 @@ namespace Assets.Scripts
         void Awake()
         {
             Random.InitState(RandomSeed);
-            
+            this.CreateGround();
             if (this.addBorderStopps)
             {
                 this.LoadBorderStopps();
@@ -33,16 +36,29 @@ namespace Assets.Scripts
 
             for (int i = 0; i < NumbersOfObstacles; i++)
             {
-                this.CreateNewInstance(false, false);
+                this.CreateNewCubeInstance(false, false);
             }
 
-            var finishpos = new Vector3(0, this.Ground.transform.localScale.y / 2 + Finish.transform.localScale.y / 2, this.Ground.transform.localScale.z - 5);
+            this.CreateFinish();
+        }
+
+        private void CreateGround()
+        {
+            var pos = Vector3.zero;
+            pos.z = (distance / 2) - 1;
+            this.ground = Instantiate(GroundPrefab, pos, Quaternion.identity);
+        }
+
+        private void CreateFinish()
+        {
+            var finishpos = new Vector3(0, this.ground.transform.localScale.y / 2 + Finish.transform.localScale.y / 2,
+                this.ground.transform.localScale.z - 5);
             Instantiate(Finish, finishpos, Quaternion.identity);
         }
 
-        private void CreateNewInstance(bool isBorderStop, bool left)
+        private void CreateNewCubeInstance(bool isBorderStop, bool left)
         {
-            GameObject ob = Instantiate(Obstacles[1]);
+            GameObject ob = Instantiate(Obstacles[0]);
 
             if (randomizeSizes)
             {
@@ -76,25 +92,25 @@ namespace Assets.Scripts
         private void LoadBorderStopps()
         {
             GameObject ob;
-            var groundend = this.Ground.transform.localScale.z;
+            var groundend = this.ground.transform.localScale.z;
             while (this.lastZPosition < groundend - 50)
             {
-                this.CreateNewInstance(true, true);
-                this.CreateNewInstance(true, false);
+                this.CreateNewCubeInstance(true, true);
+                this.CreateNewCubeInstance(true, false);
             }
         }
 
         private Vector3 GetNextBorderPos(GameObject ob, bool left)
         {
             var newZpos = this.lastZPosition += 50;
-            var xPos = this.Ground.transform.localScale.x - ob.transform.localScale.x;
+            var xPos = this.ground.transform.localScale.x - ob.transform.localScale.x;
             float newXpos = xPos / 2;
             if (left)
             {
                 newXpos *= -1;
             }
 
-            return new Vector3(newXpos, this.Ground.transform.localScale.y / 2 + ob.transform.localScale.y / 2, newZpos);
+            return new Vector3(newXpos, this.ground.transform.localScale.y / 2 + ob.transform.localScale.y / 2, newZpos);
         }
 
         void Start()
@@ -104,15 +120,15 @@ namespace Assets.Scripts
 
         private void SetPlayerPosition()
         {
-            var pos = Ground.transform.position;
+            var pos = ground.transform.position;
             pos.y = 1;
-            pos.z -= Ground.transform.localScale.z / 2;
+            pos.z -= ground.transform.localScale.z / 2;
             this.Player.transform.position = pos;
         }
         
         private Vector3 GetRandomPosition(GameObject ob)
         {
-            var groundScale = Ground.transform.localScale;
+            var groundScale = ground.transform.localScale;
 
             var minXpos = ob.transform.localScale.x / 2;
             var groundStart = groundScale.x / 2;
