@@ -2,6 +2,7 @@
 using Assets.Scripts;
 using Assets.Scripts.GameData;
 using TMPro;
+using Unity.Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -37,6 +38,7 @@ namespace Assets
             this.canvasScript = this.Canvas.GetComponent<CanvasScript>();
             this.DisableMenus();
         }
+
 
         private void InitGameVariables()
         {
