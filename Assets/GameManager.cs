@@ -1,122 +1,174 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Security.Cryptography.X509Certificates;
+using Assets.Scripts;
+using Assets.Scripts.GameData;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+namespace Assets
 {
-    public static GameManager Instance { get; private set; } 
-
-    private EGameState gameState = EGameState.Paused;
-
-    public GameObject GameOverPanel;
-    public GameObject PausePanel;
-    private GameObject currentLevel;
-
-    void Awake()
+    public class GameManager : MonoBehaviour
     {
-        if (Instance == null)
+        public static GameManager Instance { get; private set; }
+
+        private EGameState gameState = EGameState.Paused;
+
+        public GameObject Canvas;
+        private GameObject currentLevel;
+        private CanvasScript canvasScript;
+        private TimerScript timerScript;
+        private PlayerData playerdata;        
+        void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+
+                this.InitGameVariables();
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            this.canvasScript = this.Canvas.GetComponent<CanvasScript>();
+            this.DisableMenus();
         }
-        else
+
+        private void InitGameVariables()
         {
-            Destroy(gameObject);
-            return;
+            GameDataManager.LoadPlayerData();
+            this.playerdata = PlayerData.Instance;
         }
 
-        this.DisableMenus();
-    }
+        void Start()
+        {
+            timerScript = this.Canvas.GetComponent<TimerScript>();
+            this.DisableMenus();
+        }
 
-    void Start()
-    {
-        this.DisableMenus();
-    }
-
-    void OnEnable()
-    {
+        void OnEnable()
+        {
         
-    }
+        }
 
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        var timerScript = gameObject.GetComponentInChildren<TimerScript>();
-        this.DisableMenus();
-        gameState = EGameState.Countdown;
-        Time.timeScale = 1;
-        timerScript.Restart();
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            this.StartCountDown();
+        }
 
-    }
+        public void GoToLevelSelection()
+        {
+            SceneManager.LoadScene(0);
+        }
 
-    public void SelectLevel()
-    {
-        //load LevelSelectionScene
-    }
+        public void SelectLevel(TextMeshProUGUI t)
+        {
+            //load LevelSelectionScene
+            this.LoadLevel(int.Parse(t.text));
+            this.DisableMenus();
+            this.StartCountDown();
+        }
 
-    public void Quit()
-    {
-        Application.Quit();
-    }
+        private void StartCountDown()
+        {
+            this.DisableMenus();
+            gameState = EGameState.Countdown;
+            Time.timeScale = 1;
+            timerScript.Restart();
+        }
 
-    public void PauseGame()
-    {
-        gameState = EGameState.Paused;
-        this.GameOverPanel.SetActive(true);
-        Time.timeScale = 0;
-    }
+        private void LoadLevel(int level)
+        {
+            PlayerData.Instance.CurrentLevel = level;
+            SceneManager.LoadScene(level);
+        }
 
-    public bool IsRunning()
-    {
-        return gameState == EGameState.Running;
-    }
+        public void Quit()
+        {
+            Application.Quit();
+        }
 
-    public bool IsCountDown => gameState == EGameState.Countdown;
+        public void PauseGame()
+        {
+            Time.timeScale = 0;
+            gameState = EGameState.Paused;
+            this.canvasScript.TogglePause();
+        }
 
-    public bool IsPaused()
-    {
-        return gameState == EGameState.Paused;
-    }
+        public bool IsRunning()
+        {
+            return gameState == EGameState.Running;
+        }
 
-    public void DisableMenus()
-    {
-        this.GameOverPanel.SetActive(false);
-        this.PausePanel.SetActive(false);
-    }
+        public bool IsCountDown => gameState == EGameState.Countdown;
 
-    public void ContinueGame()
-    {
-        this.DisableMenus();
-        gameState = EGameState.Running;
-        Time.timeScale = 1;
-    }
+        public bool IsPaused()
+        {
+            return gameState == EGameState.Paused;
+        }
 
-    public void ShowSettings()
-    {
-        Debug.Log("Settings Requested");
-    }
+        public void DisableMenus()
+        {
+            this.canvasScript.DisableMenus();
+        }
 
-    public void ShowHome()
-    {
-        Debug.Log("Settings Requested");
-    }
+        public void ContinueGame()
+        {
+            gameState = EGameState.Running;
+            this.DisableMenus();
+            Time.timeScale = 1;
+        }
 
-    public void FinishLevel()
-    {
-        Debug.Log("GameFinished");
-        this.PauseGame();
-        // show time
-        // show Score (nr * )
-        // show next start level
-        // show level select 
-        // show go home
-    }
+        public void ShowSettings()
+        {
+            Debug.Log("Settings Requested");
+        }
 
-    public void SetGameState(EGameState state)
-    {
-        this.gameState = state;
+        public void ShowHome()
+        {
+
+            SceneManager.LoadScene(0);
+            Debug.Log("Settings Requested");
+        }
+
+        public void FinishLevel()
+        {
+            Debug.Log("GameFinished");
+            var time = this.timerScript.GetTime();
+            var bestTime = this.playerdata.GetBestTimeOfCurrentLevel();
+            if (time < bestTime)
+            {
+                bestTime = time;
+            }
+
+            this.canvasScript.ShowFinish(time, bestTime);
+            Time.timeScale = 0;
+            gameState = EGameState.Paused;
+
+            this.playerdata.SetLevelData(this.playerdata.CurrentLevel, time, 1);
+
+            // show time
+            // show Score (nr * )
+            // show next start level
+            // show level select 
+            // show go home
+        }
+
+        public void SetGameState(EGameState state)
+        {
+            this.gameState = state;
+        }
+
+        public void GameOver()
+        {
+            Time.timeScale = 0;
+            gameState = EGameState.Paused;
+            this.canvasScript.SetGameOver(true);
+        }
     }
 }

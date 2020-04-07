@@ -1,67 +1,74 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TimerScript : BaseScript
+namespace Assets.Scripts
 {
-    private float currentTime = 0f;
-    private float StartTime = 5f;
-
-    [SerializeField] Text CountdownText;
-    [SerializeField] Text CounterText;
-    private Animator animator;
-
-    void Awake()
+    public class TimerScript : MonoBehaviour
     {
-        this.animator = GetComponent<Animator>();
-    }
+        private float currentTime = 0f;
+        private float StartTime = 5f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+        [SerializeField] Text CountdownText;
+        [SerializeField] Text CounterText;
+        private Animator animator;
 
-        this.CountdownText.enabled = true;
-        CounterText.text = string.Empty;
-        this.currentTime = this.StartTime;
-        GameManager.Instance.SetGameState(EGameState.Countdown);
-    }
-
-    public void Restart()
-    {
-        this.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameManager.Instance.IsCountDown)
+        void Awake()
         {
-            this.currentTime -= Time.deltaTime;
-            
-            if (this.currentTime > 0.5)
+            this.animator = GetComponent<Animator>();
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            this.CountdownText.enabled = true;
+            CounterText.text = string.Empty;
+            var color = CountdownText.color;
+            color.a = 1f;
+            CountdownText.color = color;
+            this.currentTime = this.StartTime;
+            GameManager.Instance.SetGameState(EGameState.Countdown);
+        }
+
+        public float GetTime()
+        {
+            return this.currentTime;
+        }
+
+        public void Restart()
+        {
+            this.Start();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (GameManager.Instance.IsCountDown)
             {
-                this.CountdownText.text = currentTime.ToString("0");
+                this.currentTime -= Time.deltaTime;
+            
+                if (this.currentTime > 0.5)
+                {
+                    this.CountdownText.text = currentTime.ToString("0");
+                }
+                else
+                {
+                    this.CountdownText.text = "GO!";
+                    GameManager.Instance.ContinueGame();
+                    this.currentTime = 0f;
+                    this.animator.Play("TextFade");
+                }
             }
             else
+            if (GameManager.Instance.IsRunning())
             {
-                this.CountdownText.text = "GO!";
-                GameManager.Instance.ContinueGame();
-                this.currentTime = 0f;
-                this.animator.Play("TextFade");
-            }
-        }
-        else
-        if (GameManager.Instance.IsRunning())
-        {
-            if (this.currentTime > 1f)
-            {
-                this.CountdownText.enabled = false;
-            }
+                if (this.currentTime > 1f)
+                {
+                    this.CountdownText.enabled = false;
+                }
 
-            this.currentTime += Time.deltaTime;
-            this.CounterText.text = currentTime.ToString("F");
+                this.currentTime += Time.deltaTime;
+                this.CounterText.text = currentTime.ToString("F");
+            }
         }
     }
 }

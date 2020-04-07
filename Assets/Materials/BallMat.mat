@@ -25,7 +25,7 @@ Material:
     type: 3}
   m_ShaderKeywords: _EMISSION _NORMALMAP _SPECGLOSSMAP
   m_LightmapFlags: 2
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -115,6 +115,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_3800509E_Texture_1:
         m_Texture: {fileID: 2800000, guid: 7fe4f0944d3af734493671c22794da34, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_4986538A_Texture_1:
+        m_Texture: {fileID: 2800000, guid: ace8163195c850a4b895efd0ad0d9ef9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_CE2FC12_Texture_1:
