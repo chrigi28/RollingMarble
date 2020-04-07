@@ -58,6 +58,11 @@ public class CanvasScript : MonoBehaviour
         var finishTime = this.FinishPanel.GetComponentsInChildren<TextMeshProUGUI>().FirstOrDefault(f => f.name == "Time");
         finishTime.text = $"{time.ToString("F")}s";
         var bestTime = this.FinishPanel.GetComponentsInChildren<TextMeshProUGUI>().FirstOrDefault(f => f.name == "TimeBest");
+        if (besttime < 10)
+        {
+            besttime = time;
+        }
+
         bestTime.text = $"{besttime.ToString("F")}s";
         this.FinishPanel.SetActive(true);
     }
